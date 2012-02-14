@@ -1,0 +1,23 @@
+name: GlobalTime
+version: 0.4
+description: every time the server starts, the time of each world was set to 0. so each world have the same time
+author: Bootscreen
+website: http://bootscreen.eu
+
+main:  me.bootscreen.globaltime.GlobalTime
+
+commands:
+  globaltime:
+    aliases: gt
+    description: GlobalTime commands
+    usage: |
+           Usage:
+           /<command> - sets the time of all Worlds to same of the default world
+           /<command> <number> - sets the time of all worlds to the number
+           /<command> <world_name> - sets the time of all worlds to the time of the specific world
+
+
+permissions:
+    GlobalTime:
+        description: Allows the Player to use the globaltime commands.
+        default: op
