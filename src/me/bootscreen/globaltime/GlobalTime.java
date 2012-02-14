@@ -137,10 +137,10 @@ public class GlobalTime extends JavaPlugin{
 		long time = defaultw.getTime();
 		
 		List<World> worlds = getServer().getWorlds();
-
-		for (World world: worlds) 
+		
+		for (int i=0;i<worlds.size();i++) 
 		{
-			   world.setTime(time);
+			worlds.get(i).setTime(time);
 		}
 	}
 	
