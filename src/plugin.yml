@@ -1,5 +1,5 @@
 name: GlobalTime
-version: 0.4
+version: 0.4.1
 description: every time the server starts, the time of each world was set to 0. so each world have the same time
 author: Bootscreen
 website: http://bootscreen.eu
