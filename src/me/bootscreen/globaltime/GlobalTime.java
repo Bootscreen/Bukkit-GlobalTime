@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,8 +21,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class GlobalTime extends JavaPlugin{
 	public final Logger log = Logger.getLogger("Minecraft");
-	
-	private FileManager fileManager = new FileManager();
+
+	FileConfiguration config = null;
 	
 	PluginDescriptionFile plugdisc;
 		
@@ -32,22 +33,22 @@ public class GlobalTime extends JavaPlugin{
 
 	@Override
 	public void onEnable() {
-
-		fileManager.createConfig();
+		config = this.getConfig();
+		loadConfig();
 		
 		plugdisc = this.getDescription();
 		
 		log.info("[" + plugdisc.getName() + "] Version " + plugdisc.getVersion() + " enabled.");
 		
 		
-		if(fileManager.readBoolean("on_start"))
+		if(config.getBoolean("on_start"))
 		{
 			synctime();
 		}				
 		
-		if(fileManager.readBoolean("continuous"))
+		if(config.getBoolean("continuous"))
 		{
-			long time_s = fileManager.readInt("continuous_time")*20;
+			long time_s = config.getLong("continuous_time")*20;
 			
 			if(time_s < 20)
 			{
@@ -173,5 +174,14 @@ public class GlobalTime extends JavaPlugin{
 		{
 			   world.setTime(time);
 		}
+	}
+
+	public void loadConfig()
+	{
+		config.addDefault("on_start", false);
+		config.addDefault("continuous", false);
+		config.addDefault("continuous_time", 10);
+		config.options().copyDefaults(true);
+		saveConfig();
 	}
 }
