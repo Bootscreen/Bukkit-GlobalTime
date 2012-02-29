@@ -1,5 +1,5 @@
 name: GlobalTime
-version: 0.5
+version: 0.6
 description: every time the server starts, the time of each world was set to 0. so each world have the same time
 author: Bootscreen
 website: http://bootscreen.eu
@@ -13,7 +13,7 @@ commands:
     usage: |
            Usage:
            /<command> - sets the time of all Worlds to same of the default world
-           /<command> <number> - sets the time of all worlds to the number
+           /<command> <number/day/dawn/night/sunrise> - sets the time of all worlds to the number
            /<command> <world_name> - sets the time of all worlds to the time of the specific world
 
 

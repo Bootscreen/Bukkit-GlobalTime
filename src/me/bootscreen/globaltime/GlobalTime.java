@@ -99,7 +99,29 @@ public class GlobalTime extends JavaPlugin{
 				{
 					try
 					{
-						if(synctime(args[0]))
+						String string = args[0];
+						
+						if(string.equalsIgnoreCase("day"))
+						{
+							synctime(6000);
+							return true;
+						}
+						else if(string.equalsIgnoreCase("dawn"))
+						{
+							synctime(13500);
+							return true;
+						}
+						else if(string.equalsIgnoreCase("night"))
+						{
+							synctime(18000);
+							return true;
+						}
+						else if(string.equalsIgnoreCase("sunrise"))
+						{
+							synctime(22500);
+							return true;
+						}
+						else if(synctime(string))
 						{
 							return true;
 						}
@@ -107,11 +129,11 @@ public class GlobalTime extends JavaPlugin{
 						{
 							if(player != null)
 							{
-								player.sendMessage(ChatColor.RED + "[" + plugdisc.getName() + "] the world "+args[0]+" doesn't exists.");
+								player.sendMessage(ChatColor.RED + "[" + plugdisc.getName() + "] the world "+string+" doesn't exists.");
 							}
 							else
 							{
-								log.info("[" + plugdisc.getName() + "] the world "+args[0]+" doesn't exists.");
+								log.info("[" + plugdisc.getName() + "] the world "+string+" doesn't exists.");
 							}
 						}
 					}
@@ -147,7 +169,15 @@ public class GlobalTime extends JavaPlugin{
 	
 	public boolean synctime(String world_s)
 	{
-		World defaultw = getServer().getWorld(world_s);
+		String string = world_s;
+		if( string.equalsIgnoreCase("w_day") || 
+		    string.equalsIgnoreCase("w_dawn") || 
+		    string.equalsIgnoreCase("w_night") || 
+			string.equalsIgnoreCase("w_sunrise"))
+		{
+			string.substring(2,string.length());
+		}
+		World defaultw = getServer().getWorld(string);
 		if(defaultw != null)
 		{
 			long time = defaultw.getTime();
